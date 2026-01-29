@@ -1,0 +1,56 @@
+<div class="team-members-container">
+  <div class="header">
+    <button class="btn-back" (click)="goBack()">← חזרה לצוותים</button>
+    <h1>חברי הצוות</h1>
+  </div>
+
+  @if (loading()) {
+    <div style="text-align: center; padding: 20px;">טוען חברים...</div>
+  }
+
+  @if (error()) {
+    <div style="background: #ff6b6b; color: white; padding: 10px; border-radius: 4px; margin-bottom: 10px;">
+      {{ error() }}
+    </div>
+  }
+
+  <div class="add-member-section">
+    <h3>הוסף חבר לצוות</h3>
+    <div class="add-form">
+      <input 
+        type="email" 
+        placeholder="אימייל החבר" 
+        [(ngModel)]="newMemberEmail" 
+        [disabled]="addMemberLoading()">
+      <button 
+        (click)="addMember()" 
+        class="btn-primary" 
+        [disabled]="addMemberLoading() || !newMemberEmail.trim()">
+        {{ addMemberLoading() ? '...מוסיף' : '+ הוסף חבר' }}
+      </button>
+    </div>
+  </div>
+
+  <div class="members-list">
+    <h3>חברים בצוות ({{ members().length }})</h3>
+    
+    @if (members().length === 0) {
+      <p style="text-align: center; color: #999;">אין חברים בצוות עדיין</p>
+    } @else {
+      <div class="members-grid">
+        @for (member of members(); track member.id) {
+          <div class="member-card">
+            <div class="member-avatar">{{ member.name[0].toUpperCase() }}</div>
+            <div class="member-info">
+              <h4>{{ member.name }}</h4>
+              <p>{{ member.email }}</p>
+              <small class="role-badge" [class]="'role-' + member.role">
+                {{ member.role === 'owner' ? 'בעלים' : member.role === 'admin' ? 'מנהל' : 'חבר' }}
+              </small>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>

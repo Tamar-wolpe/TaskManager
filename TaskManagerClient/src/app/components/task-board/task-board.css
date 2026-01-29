@@ -1,0 +1,199 @@
+.board-container { 
+  padding: 20px; 
+  font-family: sans-serif; 
+  background-color: #f9f9f9; 
+  min-height: 100vh; 
+}
+
+.board-header { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  margin-bottom: 30px; 
+  gap: 10px;
+}
+
+.columns-wrapper { 
+  display: flex; 
+  gap: 20px; 
+  align-items: flex-start; 
+}
+
+.column { 
+  background-color: #ffffff; 
+  border-radius: 8px; 
+  border: 1px solid #eee;
+  width: 350px; 
+  padding: 15px; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 15px;
+}
+
+/* 🎯 CDK Drop Zone Styling */
+.drop-zone {
+  min-height: 400px;
+  border-radius: 6px;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border: 2px dashed #ddd;
+  transition: all 0.3s ease;
+}
+
+.drop-zone.cdk-drop-list-dragging .task-card:not(.cdk-drag-placeholder) {
+  transition: transform 0.2s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drop-list-dragging {
+  background-color: #e8f5e9;
+  border: 2px dashed #4caf50;
+}
+
+/* Task Card with Drag Support */
+.task-card { 
+  background: white; 
+  border: 1px solid #f0f0f0; 
+  border-radius: 6px; 
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  cursor: grab;
+  transition: all 0.2s ease;
+}
+
+.task-card:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+/* During Drag */
+.task-card.cdk-drag-preview {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  opacity: 0.8;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.4;
+  background: #ddd;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.btn-delete {
+  background: transparent;
+  border: none;
+  color: #999;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.btn-delete:hover {
+  color: #d32f2f;
+}
+
+.priority-tag { 
+  padding: 4px 8px; 
+  border-radius: 4px; 
+  font-size: 12px; 
+  font-weight: bold;
+}
+
+.priority-tag.high { 
+  background: #e3f2fd; 
+  color: #1976d2; 
+}
+
+.priority-tag.medium { 
+  background: #fff3e0; 
+  color: #f57c00; 
+}
+
+.priority-tag.low { 
+  background: #e8f5e9; 
+  color: #388e3c; 
+}
+
+.card-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.card-actions select {
+  flex: 1;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.btn-add-main { 
+  background: #4285f4; 
+  color: white; 
+  border: none; 
+  padding: 10px 20px; 
+  border-radius: 4px; 
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-add-main:hover {
+  background: #3367d6;
+}
+
+.btn-back {
+  background: #666;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-back:hover {
+  background: #444;
+}
+
+.btn-add-inline { 
+  border: 1px dashed #ccc; 
+  background: transparent; 
+  padding: 10px; 
+  cursor: pointer; 
+  color: #666;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.btn-add-inline:hover {
+  border: 1px dashed #4285f4;
+  color: #4285f4;
+}
+
+.loading, .error {
+  padding: 20px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.loading {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.error {
+  background: #ffebee;
+  color: #d32f2f;
+}

@@ -1,0 +1,57 @@
+<div class="board-container">
+  <div class="board-header">
+    <h1>לוח משימות - פרויקט {{ projectId }}</h1>
+    <button class="btn-add-main" (click)="addTask()">+ משימה חדשה</button>
+    <button class="btn-back" (click)="goBack()">← חזור לפרויקטים</button>
+  </div>
+
+  <div *ngIf="loading()" class="loading">טוען משימות...</div>
+  <div *ngIf="error()" class="error">{{ error() }}</div>
+
+  <div class="columns-wrapper">
+    @for (status of ['backlog', 'in-progress', 'done']; track status) {
+      <div class="column">
+        <h3>{{ status | titlecase }}</h3>
+        
+        <!-- 🎯 CDK Drop Zone -->
+        <div 
+          cdkDropList
+          #taskList="cdkDropList"
+          [id]="'drop-' + status"
+          [cdkDropListData]="getTasksByStatus(status)"
+          [cdkDropListConnectedTo]="['drop-backlog', 'drop-in-progress', 'drop-done']"
+          (cdkDropListDropped)="onTaskDropped($event, status)"
+          class="drop-zone">
+          
+          @for (task of getTasksByStatus(status); track task.id) {
+            <!-- 🎯 Draggable Task Card -->
+            <div 
+              cdkDrag
+              [cdkDragData]="task"
+              class="task-card"
+              cdkDragPreview>
+              
+              <div class="card-header">
+                <h4>{{ task.title }}</h4>
+                <button class="btn-delete" (click)="deleteTask(task.id)">×</button>
+              </div>
+              <p>{{ task.description }}</p>
+              
+              <div class="card-actions">
+                <span [class]="'priority-tag ' + task.priority">{{ task.priority }}</span>
+                
+                <select (change)="updateTaskStatus(task.id, $any($event.target).value)">
+                  <option [selected]="task.status === 'backlog'" value="backlog">Backlog</option>
+                  <option [selected]="task.status === 'in-progress'" value="in-progress">In Progress</option>
+                  <option [selected]="task.status === 'done'" value="done">Done</option>
+                </select>
+              </div>
+            </div>
+          }
+        </div>
+        
+        <button class="btn-add-inline" (click)="addTask(status)">+ הוסף משימה</button>
+      </div>
+    }
+  </div>
+</div>

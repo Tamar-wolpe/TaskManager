@@ -1,0 +1,160 @@
+.join-team-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.btn-back {
+  background: #7b68ee;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-back:hover {
+  background: #6c5ce7;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #eee;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #666;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s;
+}
+
+.tab-btn.active {
+  color: #7b68ee;
+  border-bottom-color: #7b68ee;
+}
+
+.tab-btn:hover {
+  color: #7b68ee;
+}
+
+.join-section {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.join-section h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.code-form {
+  display: flex;
+  gap: 10px;
+}
+
+.code-form input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  text-align: center;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+.btn-primary {
+  background: #7b68ee;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #6c5ce7;
+}
+
+.btn-primary:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.btn-full {
+  width: 100%;
+  margin-top: 15px;
+}
+
+.teams-list {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 15px;
+}
+
+.team-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  border: 2px solid #eee;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.team-option:hover {
+  background: #f9f9f9;
+  border-color: #7b68ee;
+}
+
+.team-option.selected {
+  background: #f0ebff;
+  border-color: #7b68ee;
+}
+
+.team-info {
+  flex: 1;
+}
+
+.team-info h4 {
+  margin: 0 0 5px 0;
+  font-size: 15px;
+}
+
+.team-info p {
+  margin: 0 0 5px 0;
+  font-size: 13px;
+  color: #666;
+}
+
+.team-info small {
+  color: #999;
+  font-size: 12px;
+}
+
+.team-stats {
+  text-align: right;
+  color: #666;
+  font-size: 12px;
+}

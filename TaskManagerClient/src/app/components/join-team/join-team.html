@@ -1,0 +1,88 @@
+<div class="join-team-container">
+  <div class="header">
+    <button class="btn-back" (click)="goBack()">← חזרה</button>
+    <h1>הצטרף לצוות</h1>
+  </div>
+
+  @if (loading()) {
+    <div style="text-align: center; padding: 40px;">טוען צוותים...</div>
+  }
+
+  @if (error()) {
+    <div style="background: #ff6b6b; color: white; padding: 10px; border-radius: 4px; margin-bottom: 20px;">
+      {{ error() }}
+    </div>
+  }
+
+  @if (!loading()) {
+    <div class="tabs">
+      <button 
+        [class.active]="joinMethod() === 'code'" 
+        (click)="joinMethod.set('code')"
+        class="tab-btn">
+        הצטרפות בעזרת קוד
+      </button>
+      <button 
+        [class.active]="joinMethod() === 'list'" 
+        (click)="joinMethod.set('list')"
+        class="tab-btn">
+        בחירה מרשימה
+      </button>
+    </div>
+
+    <!-- שיטה 1: הצטרפות בעזרת קוד -->
+    @if (joinMethod() === 'code') {
+      <div class="join-section">
+        <h3>הכנס קוד צוות</h3>
+        <div class="code-form">
+          <input 
+            type="text" 
+            placeholder="קוד צוות (למשל: ABC123)" 
+            [(ngModel)]="teamCode"
+            [disabled]="joiningLoading()">
+          <button 
+            (click)="joinByCode()" 
+            class="btn-primary"
+            [disabled]="joiningLoading() || !teamCode.trim()">
+            {{ joiningLoading() ? '...הצטרפות' : 'הצטרף' }}
+          </button>
+        </div>
+      </div>
+    }
+
+    <!-- שיטה 2: בחירה מרשימה -->
+    @if (joinMethod() === 'list') {
+      <div class="join-section">
+        <h3>בחר צוות מהרשימה</h3>
+        
+        @if (availableTeams().length === 0) {
+          <p style="text-align: center; color: #999; padding: 20px;">אין צוותים פתוחים להצטרפות</p>
+        } @else {
+          <div class="teams-list">
+            @for (team of availableTeams(); track team.id) {
+              <div 
+                class="team-option"
+                [class.selected]="selectedTeamId === team.id"
+                (click)="selectedTeamId = team.id">
+                <div class="team-info">
+                  <h4>{{ team.name }}</h4>
+                  <p>{{ team.description }}</p>
+                  <small>קוד: {{ team.team_code }}</small>
+                </div>
+                <div class="team-stats">
+                  <span>{{ team.memberCount || 0 }} חברים</span>
+                </div>
+              </div>
+            }
+          </div>
+          <button 
+            (click)="joinBySelection()" 
+            class="btn-primary btn-full"
+            [disabled]="joiningLoading() || !selectedTeamId">
+            {{ joiningLoading() ? '...הצטרפות' : 'הצטרף לצוות הנבחר' }}
+          </button>
+        }
+      </div>
+    }
+  }
+</div>

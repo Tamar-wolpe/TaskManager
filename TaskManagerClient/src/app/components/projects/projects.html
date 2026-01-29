@@ -1,0 +1,25 @@
+<div class="projects-container">
+  <h2>הפרויקטים שלי</h2>
+  
+  @if (loading()) {
+    <div style="text-align: center; padding: 20px;">טוען פרויקטים...</div>
+  }
+  
+  @if (error()) {
+    <div style="background: #ff6b6b; color: white; padding: 10px; border-radius: 4px; margin-bottom: 10px;">
+      {{ error() }}
+    </div>
+  }
+  
+  <div class="projects-grid">
+    @for (project of filteredProjects(); track project.id) {
+      <div class="project-card" (click)="goToBoard(project.id)">
+        <h3>{{ project.name }}</h3>
+         <small>שייך לצוות: {{ project.team_id }}</small> 
+        <p>{{ project.description }}</p>
+        <button>צפה בלוח המשימות</button>
+      </div>
+    }
+  </div>
+  <button class="add-btn" (click)="createNewProject()">+ פרויקט חדש</button>
+</div>

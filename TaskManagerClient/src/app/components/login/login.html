@@ -1,0 +1,33 @@
+<div class="login-container">
+  <div class="login-box">
+    <h1>{{ isLogin() ? 'ברוכים הבאים' : 'הרשמה למערכת' }}</h1>
+    
+    @if (showExpiredMessage) {
+      <div class="warning-message" style="background: #ffa502; color: white; padding: 12px; border-radius: 4px; margin-bottom: 15px;">
+        ⏰ {{ error() }}
+      </div>
+    }
+    
+    @if (error() && !showExpiredMessage) {
+      <div class="error-message" style="background: #ff6b6b; color: white; padding: 10px; border-radius: 4px; margin-bottom: 10px;">
+        {{ error() }}
+      </div>
+    }
+    
+    <form (submit)="handleSubmit($event)">
+      @if (!isLogin()) {
+        <input type="text" placeholder="שם מלא" [(ngModel)]="username" name="username" required>
+      }
+      <input type="email" placeholder="אימייל" [(ngModel)]="email" name="email" required>
+      <input type="password" placeholder="סיסמה" [(ngModel)]="password" name="password" required>
+      
+      <button type="submit" class="btn-primary" [disabled]="loading()">
+        {{ loading() ? '...טוען' : (isLogin() ? 'התחבר' : 'צור חשבון') }}
+      </button>
+    </form>
+
+    <p (click)="isLogin.set(!isLogin())" class="toggle-link">
+      {{ isLogin() ? 'אין לך חשבון? הירשם כאן' : 'כבר יש לך חשבון? התחבר' }}
+    </p>
+  </div>
+</div>
