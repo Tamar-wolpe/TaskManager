@@ -7,7 +7,7 @@ import { Observable, tap } from 'rxjs';
 })
 export class ApiService {
   private http = inject(HttpClient);
-  private readonly baseUrl = 'http://localhost:3000/api';
+  private readonly baseUrl = 'https://tasks-server-gmpd.onrender.com';
   
   // ניהול מצב ה-Token
   token = signal<string | null>(sessionStorage.getItem('token'));
